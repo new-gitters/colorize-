@@ -1,0 +1,28 @@
+import numpy as np
+import matplotlib.pyplot as plt
+import matplotlib.image as mpimg
+
+def color_to_grey(img):
+        greyImage = np.zeros(img.shape)
+        R = np.array(img[:, :, 0])
+        G = np.array(img[:, :, 1])
+        B = np.array(img[:, :, 2])
+#using Luminosity formula for convertion of RGB into GrayScale
+        R = (R *.21)
+        G = (G *.72)
+        B = (B *.07)
+
+        Sum = (R+G+B)
+        greyImage = img
+
+#changing the RGB values of the image to the newly calculated Greyscale values
+
+        for i in range(3):
+            greyImage[:,:,i] = Sum
+ 
+        return greyImage       
+
+image = mpimg.imread("bird1.jpg")   
+greyImage = color_to_grey(image) 
+plt.imshow(greyImage)
+plt.show()
